@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  node-app:
+    build: .\gate-simulator
+    image: node-app:1.0
+    ports:
+      - '9999:9999'
+  mysql:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: pass
