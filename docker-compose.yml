@@ -1,10 +1,5 @@
 version: '3.7'
 services:
-  node-app:
-    build: .\gate-simulator
-    image: node-app:1.0
-    ports:
-      - '9999:9999'
   mysql:
     image: mysql:8.0
     restart: always
@@ -17,3 +12,8 @@ services:
       MYSQL_DATABASE: app
       MYSQL_USER: app
       MYSQL_PASSWORD: pass
+  node-app:
+    build: .\gate-simulator
+    image: node-app:1.0
+    ports:
+      - '9999:9999'
