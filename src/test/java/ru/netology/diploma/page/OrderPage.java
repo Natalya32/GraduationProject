@@ -1,8 +1,12 @@
 package ru.netology.diploma.page;
 
 import com.codeborne.selenide.SelenideElement;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import ru.netology.diploma.data.DataHelper;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +25,7 @@ public class OrderPage {
     String yearLess = LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
     String expiredMonth = LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
     String expiredYear = LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("yy"));
+
     public void validDataCardApproved(DataHelper.DataCard info) {
         numberCard.setValue(info.getNumberCard());
         month.setValue(info.getMonth());
