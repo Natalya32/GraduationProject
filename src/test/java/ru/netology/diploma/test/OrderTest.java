@@ -26,27 +26,29 @@ public class OrderTest {
     @BeforeEach
     void openBrowser() {
         open("http://localhost:8080");
-        $x("//button[1]").click();
     }
 
     @Test
     public void shouldOrderIfValidDataCardApproved() {
         var orderPage = new OrderPage();
         orderPage
-                .validDataCardApproved(DataHelper.getValidDataCardApproved());
+                .order()
+                .validDataCardApproved(DataHelper.getValidDataCardApproved(), DataHelper.getQuery().getOA());
     }
 
     @Test
     public void shouldOrderIfValidDataCardDeclined() {
         var orderPage = new OrderPage();
         orderPage
-                .validDataCardDeclined(DataHelper.getValidDataCardDeclined());
+                .order()
+                .validDataCardDeclined(DataHelper.getValidDataCardDeclined(), DataHelper.getQuery().getOD());
     }
 
     @Test
     public void shouldOrderIfNotValidNumberCard() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
                 .notValidNumberCard(DataHelper.getValidDataCardApproved());
     }
 
@@ -54,6 +56,7 @@ public class OrderTest {
     public void shouldOrderIfNotValidMonthMore() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
                 .notValidMonthMore(DataHelper.getValidDataCardApproved());
     }
 
@@ -61,6 +64,7 @@ public class OrderTest {
     public void shouldOrderIfNotValidMonth() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
                 .notValidMonth(DataHelper.getValidDataCardApproved());
     }
 
@@ -68,6 +72,7 @@ public class OrderTest {
     public void shouldOrderIfNotValidYearLess() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
                 .notValidYearLess(DataHelper.getValidDataCardApproved());
     }
 
@@ -75,6 +80,7 @@ public class OrderTest {
     public void shouldOrderIfCardExpired() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
                 .CardExpired(DataHelper.getValidDataCardApproved());
     }
 
@@ -82,6 +88,7 @@ public class OrderTest {
     public void shouldOrderIfNotValidOwner() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
                 .notValidOwner(DataHelper.getValidDataCardApproved());
     }
 
@@ -89,6 +96,79 @@ public class OrderTest {
     public void shouldOrderIfNotValidCvv() {
         var orderPage = new OrderPage();
         orderPage
+                .order()
+                .notValidCvv(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfValidDataCardApproved() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .validDataCardApproved(DataHelper.getValidDataCardApproved(), DataHelper.getQuery().getCA());
+    }
+
+    @Test
+    public void shouldCreditIfValidDataCardDeclined() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .validDataCardDeclined(DataHelper.getValidDataCardDeclined(), DataHelper.getQuery().getCD());
+    }
+
+    @Test
+    public void shouldCreditIfNotValidNumberCard() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .notValidNumberCard(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfNotValidMonthMore() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .notValidMonthMore(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfNotValidMonth() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .notValidMonth(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfNotValidYearLess() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .notValidYearLess(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfCardExpired() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .CardExpired(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfNotValidOwner() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
+                .notValidOwner(DataHelper.getValidDataCardApproved());
+    }
+
+    @Test
+    public void shouldCreditIfNotValidCvv() {
+        var orderPage = new OrderPage();
+        orderPage
+                .credit()
                 .notValidCvv(DataHelper.getValidDataCardApproved());
     }
 }
