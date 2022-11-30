@@ -3,7 +3,7 @@
 ## При простой покупке тура дебетовой картой:
 ### 1. Если карта "APPROVED"
 ```sql
-select o.id
+select count(o.id)
 from payment_entity p
 left join order_entity o on o.payment_id=p.transaction_id
 where p.status="APPROVED"
@@ -14,7 +14,7 @@ where p.status="APPROVED"
 
 ### 2. Если карта "DECLINED"
 ```sql
-select o.id
+select count(o.id)
 from payment_entity p
 left join order_entity o on o.payment_id=p.transaction_id
 where p.status="DECLINED"
@@ -27,9 +27,9 @@ where p.status="DECLINED"
 ## При покупке тура в кредит по данным дебетовой карты:
 ### 1. Если карта "APPROVED"
 ```sql
-select o.id
-from credit_requst_entity c
-left join order_entity o on o.credit_id=p.bank_id
+select count(o.id)
+from credit_request_entity c
+left join order_entity o on o.credit_id=c.bank_id
 where c.status="APPROVED"
 ```
 
@@ -38,9 +38,9 @@ where c.status="APPROVED"
 
 ### 2. Если карта "DECLINED"
 ```sql
-select o.id
-from credit_requst_entity c
-left join order_entity o on o.credit_id=p.bank_id
+select count(o.id)
+from credit_request_entity c
+left join order_entity o on o.credit_id=c.bank_id
 where c.status="DECLINED"
 ```
 
