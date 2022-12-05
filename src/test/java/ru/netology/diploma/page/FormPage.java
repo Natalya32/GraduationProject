@@ -3,6 +3,7 @@ package ru.netology.diploma.page;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Assertions;
 import ru.netology.diploma.data.DataHelper;
+import ru.netology.diploma.data.SqlQuery;
 
 import java.time.Duration;
 
@@ -28,20 +29,20 @@ public class FormPage {
     }
 
     public void validDataCardApproved(DataHelper.DataCard info, String query) {
-        long preQuantity = DataHelper.quantityRecords(query);
+        long preQuantity = SqlQuery.quantityRecords(query);
         fillingForm(info.getNumberCard(), info.getMonth(), info.getYear(), info.getOwner(), info.getCvvCode());
         $x("//*[text()='Операция одобрена Банком.']").shouldBe(visible, Duration.ofSeconds(15));
-        long postQuantity = DataHelper.quantityRecords(query);
+        long postQuantity = SqlQuery.quantityRecords(query);
         long expected = 1;
         long actual = postQuantity - preQuantity;
         Assertions.assertEquals(expected, actual);
     }
 
     public void validDataCardDeclined(DataHelper.DataCard info, String query) {
-        long preQuantity = DataHelper.quantityRecords(query);
+        long preQuantity = SqlQuery.quantityRecords(query);
         fillingForm(info.getNumberCard(), info.getMonth(), info.getYear(), info.getOwner(), info.getCvvCode());
         $x("//*[text()='Ошибка! Банк отказал в проведении операции.']").shouldBe(visible, Duration.ofSeconds(15));
-        long postQuantity = DataHelper.quantityRecords(query);
+        long postQuantity = SqlQuery.quantityRecords(query);
         Assertions.assertEquals(preQuantity, postQuantity);
     }
 

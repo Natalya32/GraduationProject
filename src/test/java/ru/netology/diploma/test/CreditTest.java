@@ -10,9 +10,9 @@ import ru.netology.diploma.data.DataHelper;
 import ru.netology.diploma.data.SqlQuery;
 import ru.netology.diploma.page.OrderPage;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
-public class OrderTest {
+public class CreditTest {
 
     @BeforeAll
     static void setUpAll() {
@@ -30,74 +30,74 @@ public class OrderTest {
     }
 
     @Test
-    public void shouldOrderIfValidDataCardApproved() {
+    public void shouldCreditIfValidDataCardApproved() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
-                .validDataCardApproved(DataHelper.getValidDataCardApproved(), SqlQuery.getQuery().getOrderApproved());
+                .credit()
+                .validDataCardApproved(DataHelper.getValidDataCardApproved(), SqlQuery.getQuery().getCreditApproved());
     }
 
     @Test
-    public void shouldOrderIfValidDataCardDeclined() {
+    public void shouldCreditIfValidDataCardDeclined() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
-                .validDataCardDeclined(DataHelper.getValidDataCardDeclined(), SqlQuery.getQuery().getOrderDeclined());
+                .credit()
+                .validDataCardDeclined(DataHelper.getValidDataCardDeclined(), SqlQuery.getQuery().getCreditDeclined());
     }
 
     @Test
-    public void shouldOrderIfNotValidNumberCard() {
+    public void shouldCreditIfNotValidNumberCard() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .notValidNumberCard(DataHelper.getValidDataCardApproved());
     }
 
     @Test
-    public void shouldOrderIfNotValidMonthMore() {
+    public void shouldCreditIfNotValidMonthMore() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .notValidMonthMore(DataHelper.getValidDataCardApproved());
     }
 
     @Test
-    public void shouldOrderIfNotValidMonth() {
+    public void shouldCreditIfNotValidMonth() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .notValidMonth(DataHelper.getValidDataCardApproved());
     }
 
     @Test
-    public void shouldOrderIfNotValidYearLess() {
+    public void shouldCreditIfNotValidYearLess() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .notValidYearLess(DataHelper.getValidDataCardApproved());
     }
 
     @Test
-    public void shouldOrderIfCardExpired() {
+    public void shouldCreditIfCardExpired() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .CardExpired(DataHelper.getValidDataCardApproved());
     }
 
     @Test
-    public void shouldOrderIfNotValidOwner() {
+    public void shouldCreditIfNotValidOwner() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .notValidOwner(DataHelper.getValidDataCardApproved());
     }
 
     @Test
-    public void shouldOrderIfNotValidCvv() {
+    public void shouldCreditIfNotValidCvv() {
         var orderPage = new OrderPage();
         orderPage
-                .order()
+                .credit()
                 .notValidCvv(DataHelper.getValidDataCardApproved());
     }
 }
