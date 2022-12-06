@@ -31,9 +31,12 @@ public class SqlQuery {
 
     public static long quantityRecords(String query) {
         var runner = new QueryRunner();
+        var url = System.getProperty("url");
+        var username = System.getProperty("username");
+        var password = System.getProperty("password");
 
         try (
-                var conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
+                var conn = DriverManager.getConnection(url, username, password);
         ) {
             return runner.query(conn, query, new ScalarHandler<>());
         } catch (SQLException e) {
